@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('colocation_user', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users')->OnDeletedel('cascade');
+            $table->foreignId('colocation_id')->constrained('_colocation')->OnDeletedel('cascade');
+            $table->string('role');
+            $table->time('joined_at');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('colocation_user');
+    }
+};
