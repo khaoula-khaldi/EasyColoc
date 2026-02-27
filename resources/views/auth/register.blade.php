@@ -38,7 +38,7 @@
             <h2 class="text-2xl font-bold mb-6 text-center">Créer un compte</h2>
 
             <!-- Laravel Register Form -->
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Name -->
@@ -63,6 +63,18 @@
                     <x-text-input id="password" class="block mt-1 w-full border-gray-300 rounded-md"
                         type="password" name="password" required autocomplete="new-password" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
+                    <label for="image" class="block font-medium text-sm text-gray-700">
+                        Photo de profil
+                    </label>
+
+                    <input id="image"
+                        class="block mt-1 w-full"
+                        type="file"
+                        name="image"
+                        accept="image/*">
                 </div>
 
                 <!-- Confirm Password -->

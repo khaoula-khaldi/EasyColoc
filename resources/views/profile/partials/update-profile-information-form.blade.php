@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form id="send-verification" method="post" action="{{ route('verification.send') }}" enctype="multipart/form-data">
         @csrf
     </form>
 
@@ -45,6 +45,18 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div class="mt-4">
+            <label for="image" class="block font-medium text-sm text-gray-700">
+                Photo de profil
+            </label>
+
+            <input id="image"
+                class="block mt-1 w-full"
+                type="file"
+                name="image"
+                accept="image/*">
         </div>
 
         <div class="flex items-center gap-4">

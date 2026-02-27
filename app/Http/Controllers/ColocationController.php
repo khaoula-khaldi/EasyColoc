@@ -1,10 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Colocation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class Colocation extends Controller
+
+class ColocationController extends Controller
 {
-    //
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+       
+        $colocation = Colocation::create([
+            'name' => $request->name,
+            'status' => 'active',
+        ]);
+
+        
+        $colocation->users()->attach(auth()->id(), [
+            'role' => 'owner',
+            'joined_at' => now(),
+        ]);
+
+        return view('dashboard');
+            
+    }
+    
+    public function view(){
+        $colocation = auth()->user()->colocations()->with('users')->first();
+
+        return view('colocation.colocationView', compact('colocation'));
+    }
 }

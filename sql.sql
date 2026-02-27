@@ -1,1 +1,5 @@
-select * from users;
+select * from users ;
+
+ALTER TABLE _colocation
+DROP COLUMN owner_id;
+DROP TABLE invitations;

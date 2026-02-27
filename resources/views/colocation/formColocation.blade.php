@@ -27,54 +27,50 @@
 
     </aside>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            
-            <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8">
-                
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-                    🏠 Nouvelle Colocation
-                </h3>
+    <!-- Main Content -->
+<main class="flex-1 p-10 overflow-y-auto">
 
-                <form method="POST" >
-                    @csrf
+    <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-10 w-full h-full">
+        
+        <h3 class="text-3xl font-bold text-gray-800 dark:text-white mb-10">
+            🏠 Nouvelle Colocation
+        </h3>
 
-                    <!-- Nom Colocation -->
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Nom de la colocation
-                        </label>
+        <form method="POST" class="w-full>" action="{{ route('Colocation.store') }}">
+            @csrf
 
-                        <input type="text"
-                               name="name"
-                               id="name"
-                               value="{{ old('name') }}"
-                               placeholder="Ex: Coloc Centre Ville"
-                               class="mt-2 block w-full rounded-xl border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                               required>
+            <!-- Nom Colocation -->
+            <div class="mb-8">
+                <label for="name" class="block text-lg font-semibold text-gray-700 dark:text-gray-300">
+                    Nom de la colocation
+                </label>
 
-                        @error('name')
-                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+                <input type="text"
+                       name="name"
+                       id="name"
+                       value="{{ old('name') }}"
+                       placeholder="Ex: Coloc Centre Ville"
+                       class="mt-3 block w-full rounded-xl border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-4 text-lg"
+                       required>
 
-
-                    <!-- Button -->
-                    <div class="mt-8 flex justify-end">
-                        <button type="submit"
-                                class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg transition duration-200">
-                            Créer la colocation
-                        </button>
-                    </div>
-
-                </form>
-
+                @error('name')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
             </div>
 
-        </div>
+            <!-- Button -->
+            <div class="mt-10">
+                <button type="submit"
+                        class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-semibold rounded-xl shadow-lg transition duration-200">
+                    Créer la colocation
+                </button>
+            </div>
+
+        </form>
+
     </div>
 
-</div>
+</main>
 
 </body>
 </html>

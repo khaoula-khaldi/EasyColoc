@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
     ];
 
     /**
@@ -46,7 +47,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function colocations(){
-        return $this->belongsToMany(Colocation::class);
+    public function colocations()
+    {
+        return $this->belongsToMany(Colocation::class)
+                    ->withPivot('role', 'joined_at')
+                    ->withTimestamps();
     }
+    
 }

@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\invitationController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProfileController; 
+use App\Http\Controllers\ColocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,5 +23,35 @@ Route::middleware('auth')->group(function () {
 Route::get('/formColocation',function(){
     return view('colocation.formColocation');
 })->name('formColocation');
+//store colocation 
+Route::post('/Colocation',[ColocationController::class,'store'])->name('Colocation.store');
+//view de la colocation
+Route::get('/colocation', [ColocationController::class, 'view'])
+     ->name('colocationView');
+  //create categories   
+     
+Route::get('/colocation/{id}/categories/create',
+    [CategoryController::class, 'create']
+)->name('categories.create');
+
+// Form creation
+Route::get('/colocation/{id}/categories/create', [CategoryController::class, 'create'])
+    ->name('categories.create');
+
+// Store category
+Route::post('/colocation/{id}/categories', [CategoryController::class, 'store'])
+    ->name('categories.store');
+
+//despenses
+Route::get('/colocation/{id}/despenses/create', [despensesController::class, 'create'])
+    ->name('despenses.create');
+
+//invitation create
+Route::get('/colocation/{id}/invitation/create', [InvitationController::class, 'create'])
+    ->name('invitation.create');
+
+//form invitation 
+Route::post('/colocation/{id}/invitation/store', [InvitationController::class, 'store'])
+->name('invitation.store');
 
 require __DIR__.'/auth.php';

@@ -18,17 +18,37 @@
         <div class="p-6">
             <h1 class="text-2xl font-bold text-gray-800 dark:text-white">EasyColoc</h1>
         </div>
+                
+        <div class="flex items-center gap-4 mb-6">
+
+            @if(Auth::user()->image)
+                <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                    class="w-20 h-20 rounded-full object-cover border-4 border-indigo-500 shadow-md">
+            @else
+                <img src="{{ asset('images/default.png') }}"
+                    class="w-20 h-20 rounded-full object-cover border-4 border-indigo-500 shadow-md">
+            @endif
+
+            <div>
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                    Bonjour {{ Auth::user()->name }} 👋
+                </h2>
+            </div>
+        </div>
+
         <nav class="mt-6">
             <a href="{{ route('profile.edit') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Profile</a>
             <a href="{{ route('formColocation') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Ajouter Colocation</a>
-            <a href="#" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Dépenses</a>
-            <a href="#" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Ajouter Dépense</a>
+            <a href="{{ route('colocationView') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Voir votre colocation</a>
+            <a href="{ route('dashboard') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Dashbord</a>
             <a href="#" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Membres</a>
             <a href="#" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Statistiques</a>
         </nav>
 
+
     </aside>
 
+    
     <!-- Main content -->
     <main class="flex-1 p-6 overflow-y-auto">
 
