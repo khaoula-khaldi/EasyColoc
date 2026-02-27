@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvitationMail;
+
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,7 +30,10 @@ class InvitationController extends Controller
             'colocation_id' => $colocationId,
         ]);
 
-        return back()->with('success', 'Invitation envoyée !');
+        Mail::to($request->email)->send(new InvitationMail($token));
+
+        return back()->with('success', 'Invitation envoyée par email !');
+
     }
 
     // Accepter invitation
@@ -35,11 +41,17 @@ class InvitationController extends Controller
     {
         $invitation = Invitation::where('token', $token)->firstOrFail();
         $user = auth()->user();
-        $user->colocation_id = $invitation->colocation_id;
-        $user->save();
+        $user->colocations()->syncWithoutDetaching([
+            $invitation->colocation_id => [
+                'role' => 'member',
+                'joined_at' => now()
+            ]
+         ]);
+
+
         $invitation->delete();
 
-        return "Vous avez rejoint la colocation !";
+        return view('colocationView');
     }
 
     // Refuser invitation

@@ -54,4 +54,12 @@ Route::get('/colocation/{id}/invitation/create', [InvitationController::class, '
 Route::post('/colocation/{id}/invitation/store', [InvitationController::class, 'store'])
 ->name('invitation.store');
 
+Route::get('/invitation/accept/{token}', [InvitationController::class, 'accept'])
+    ->name('invitation.accept');
+
+Route::get('/invitation/decline/{token}', [InvitationController::class, 'decline'])
+    ->name('invitation.decline');
+
+    
+
 require __DIR__.'/auth.php';
