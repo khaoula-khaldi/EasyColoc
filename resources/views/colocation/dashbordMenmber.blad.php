@@ -32,32 +32,15 @@
         </div>
 
         <nav class="mt-6">
-        <a href="{{ route('dashboard') }}"
-        class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-        Dashboard
-        </a>
+            <a href="{{ route('dashboard') }} "
+               class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Dashbord</a>
+    
+            <a href="despenses"
+               class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Ajouter un déspenses</a>
 
-        @if($colocation && $colocation->isOwner())
-            <a href="{{ route('categories.create', $colocation->id) }}"
-            class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-            Créer une catégorie
-            </a>
-            <a href="{{ route('invitation.create', $colocation->id) }}"
-            class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-            Créer une Invitation
-            </a>
-        @endif
-
-        <a href="despenses"
-        class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-        Ajouter un déspense
-        </a>
-
-        <a href="#"
-        class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-        _________
-        </a>
-    </nav>
+            <a href="#"
+               class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">_________</a>
+        </nav>
     </aside>
 
     <!-- Main content -->

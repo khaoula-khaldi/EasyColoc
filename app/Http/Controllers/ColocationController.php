@@ -33,6 +33,12 @@ class ColocationController extends Controller
     public function view(){
         $colocation = auth()->user()->colocations()->with('users')->first();
 
+        if (!$colocation) {
+            // rediriger vers dashboard avec message
+            return redirect()->route('dashboard')
+                            ->with('message', 'Vous n’avez encore aucune colocation.');
+        }
+        
         return view('colocation.colocationView', compact('colocation'));
     }
 }

@@ -37,23 +37,29 @@ class InvitationController extends Controller
     }
 
     // Accepter invitation
-    public function accept($token)
-    {
+        public function accept($token){
+
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
         $invitation = Invitation::where('token', $token)->firstOrFail();
         $user = auth()->user();
-        $user->colocations()->syncWithoutDetaching([
-            $invitation->colocation_id => [
-                'role' => 'member',
-                'joined_at' => now()
-            ]
-         ]);
 
+       
+
+        // Ajouter user à la colocation
+        $user->colocations()->attach($invitation->colocation_id, [
+            'role' => 'member',
+            'joined_at' => now(),
+        ]);
 
         $invitation->delete();
 
-        return view('colocationView');
+        // Rediriger vers dashboard spécifique
+        return redirect()->route('colocation.colocationView', ['id' => $invitation->colocation_id])
+            ->with('success', 'Vous avez rejoint la colocation !');
     }
-
     // Refuser invitation
     public function decline($token)
     {

@@ -42,9 +42,8 @@
             <a href="{{ route('colocationView') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Voir votre colocation</a>
             <a href="{ route('dashboard') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Dashbord</a>
             <a href="#" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Membres</a>
-            <a href="#" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Statistiques</a>
+            <a href="{{ route('logout') }}" class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Logout</a>
         </nav>
-
 
     </aside>
 

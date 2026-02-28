@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -23,13 +23,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/formColocation',function(){
     return view('colocation.formColocation');
 })->name('formColocation');
+
 //store colocation 
 Route::post('/Colocation',[ColocationController::class,'store'])->name('Colocation.store');
 //view de la colocation
-Route::get('/colocation', [ColocationController::class, 'view'])
-     ->name('colocationView');
-  //create categories   
-     
+Route::get('/colocation', [ColocationController::class, 'view'])->name('colocationView');
+
+
+//create categories     
 Route::get('/colocation/{id}/categories/create',
     [CategoryController::class, 'create']
 )->name('categories.create');
@@ -54,12 +55,12 @@ Route::get('/colocation/{id}/invitation/create', [InvitationController::class, '
 Route::post('/colocation/{id}/invitation/store', [InvitationController::class, 'store'])
 ->name('invitation.store');
 
-Route::get('/invitation/accept/{token}', [InvitationController::class, 'accept'])
-    ->name('invitation.accept');
+Route::get('/invitation/accept/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+Route::get('/invitation/decline/{token}', [InvitationController::class, 'decline'])->name('invitation.decline');
 
-Route::get('/invitation/decline/{token}', [InvitationController::class, 'decline'])
-    ->name('invitation.decline');
+Route::get('/dashbordMenmber', function () {
+    return view('colocation.dashbordMenmber');
+})->middleware(['auth'])->name('dashbordMenmber');
 
-    
 
 require __DIR__.'/auth.php';
