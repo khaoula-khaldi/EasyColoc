@@ -1,30 +1,19 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Colocation;
+use App\Models\Despense;
 
-class despensesController extends Controller
+class DespensesController extends Controller
 {
-    //
-        // Afficher les dépenses
-    public function index($colocation_id)
-    {
-        $colocation = Colocation::findOrFail($colocation_id);
-        $despenses = $colocation->despenses;
-
-        return view('despenses.index', compact('colocation', 'despenses'));
-    }
-
-    //  Form création
     public function create($colocation_id)
     {
         $colocation = Colocation::findOrFail($colocation_id);
-
         return view('despenses.create', compact('colocation'));
     }
 
-    // Enregistrer
+
     public function store(Request $request, $colocation_id)
     {
         $request->validate([
@@ -38,16 +27,6 @@ class despensesController extends Controller
             'colocation_id' => $colocation_id,
         ]);
 
-        return view('colocationView');
+        return redirect()->route('colocationView');
     }
-
-    // Supprimer
-    public function destroy($id)
-    {
-        $despense = Despense::findOrFail($id);
-        $despense->delete();
-
-        return back()->with('success', 'Dépense supprimée');
-    }
-
 }

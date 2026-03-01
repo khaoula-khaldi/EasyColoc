@@ -48,10 +48,7 @@
             </a>
         @endif
 
-        <a href="despenses"
-        class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-        Ajouter un déspense
-        </a>
+        <a href="{{ route('despenses.create', $colocation->id) }}"class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Ajouter une dépense</a>
 
         <a href="#"
         class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">

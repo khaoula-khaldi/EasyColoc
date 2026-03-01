@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DespensesController;
 use App\Http\Controllers\invitationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController; 
@@ -46,8 +47,11 @@ Route::post('/colocation/{id}/categories', [CategoryController::class, 'store'])
     ->name('categories.store');
 
 //despenses
-Route::get('/colocation/{id}/despenses/create', [despensesController::class, 'create'])
+Route::get('/colocation/{id}/despenses/create', [DespensesController::class, 'create'])
     ->name('despenses.create');
+
+Route::post('/colocation/{id}/despenses', 
+    [DespensesController::class, 'store'])->name('despenses.store');
 
 //invitation create
 Route::get('/colocation/{id}/invitation/create', [InvitationController::class, 'create'])

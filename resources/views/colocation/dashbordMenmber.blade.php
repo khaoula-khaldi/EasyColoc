@@ -35,8 +35,8 @@
             <a href="{{ route('dashboard') }} "
                class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Dashbord</a>
     
-            <a href="despenses"
-               class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Ajouter un déspenses</a>
+            <a href="{{ route('despenses.create', $colocation->id) }}"
+               class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">Ajouter une dépense</a>
 
             <a href="#"
                class="block px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">_________</a>
@@ -68,26 +68,21 @@
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                <tr>
-                    <td class="px-4 py-2">nom</td>
-                    <td class="px-4 py-2">email</td>
-                    <td class="px-4 py-2">role</td>
-                    <td class="px-4 py-2">jointeur</td>
-                </tr>
+                    @foreach($colocation->users as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->pivot->role }}</td>
+                        <td>{{ $user->pivot->joined_at }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </main>
 
 
-@foreach($colocation->users as $user)
-<tr>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>{{ $user->pivot->role }}</td>
-    <td>{{ $user->pivot->joined_at }}</td>
-</tr>
-@endforeach
+
 </div>
 
 </body>
