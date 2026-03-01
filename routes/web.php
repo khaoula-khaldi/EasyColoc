@@ -30,6 +30,8 @@ Route::post('/Colocation',[ColocationController::class,'store'])->name('Colocati
 Route::get('/colocation', [ColocationController::class, 'view'])->name('colocationView');
 
 
+
+
 //create categories     
 Route::get('/colocation/{id}/categories/create',
     [CategoryController::class, 'create']
@@ -61,6 +63,8 @@ Route::get('/invitation/decline/{token}', [InvitationController::class, 'decline
 Route::get('/dashbordMenmber', function () {
     return view('colocation.dashbordMenmber');
 })->middleware(['auth'])->name('dashbordMenmber');
+
+
 
 
 require __DIR__.'/auth.php';

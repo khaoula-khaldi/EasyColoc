@@ -79,6 +79,15 @@
         </div>
     </main>
 
+
+@foreach($colocation->users as $user)
+<tr>
+    <td>{{ $user->name }}</td>
+    <td>{{ $user->email }}</td>
+    <td>{{ $user->pivot->role }}</td>
+    <td>{{ $user->pivot->joined_at }}</td>
+</tr>
+@endforeach
 </div>
 
 </body>

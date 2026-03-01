@@ -85,16 +85,20 @@
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                <tr>
-                    <td class="px-4 py-2">nom</td>
-                    <td class="px-4 py-2">email</td>
-                    <td class="px-4 py-2">role</td>
-                    <td class="px-4 py-2">jointeur</td>
-                </tr>
+                    @foreach($colocation->users as $user)
+                        <tr>
+                            <td class="px-4 py-2">{{ $user->name }}</td>
+                            <td class="px-4 py-2">{{ $user->email }}</td>
+                            <td class="px-4 py-2">{{ $user->pivot->role }}</td>
+                            <td class="px-4 py-2">{{ \Carbon\Carbon::parse($user->pivot->joined_at)->format('d/m/Y') }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </main>
+
+
 
 </div>
 
